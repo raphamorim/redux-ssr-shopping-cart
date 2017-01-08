@@ -1,4 +1,5 @@
 YARN := $(shell command -v yarn 2> /dev/null)
+BIN := ./node_modules/.bin
 
 help:
 	@echo '    setup .................... sets up project dependencies'
@@ -26,6 +27,12 @@ build-prod:
 run:
 	npm start
 
+lint:
+	$(BIN)/eslint --ext .js src/
+
+lint-autofix:
+	$(BIN)/eslint --fix --ext .js src/	
+
 test:
 	$(MAKE) lint
 	npm test
@@ -46,9 +53,6 @@ setup_nvm:
 	else \
 		curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash; \
 	fi
-
-lint:
-	npm run lint
 
 clean:
 	-rm -rf node_modules

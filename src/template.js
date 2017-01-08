@@ -1,5 +1,5 @@
 export default ({ body, title }) => {
-  return `
+	return `
     <!DOCTYPE html>
     <html>
       <head>
@@ -13,5 +13,5 @@ export default ({ body, title }) => {
       
       <script src="/assets/bundle.js"></script>
     </html>
-  `;
-};
+  `
+}

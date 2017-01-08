@@ -1,7 +1,7 @@
-import express from 'express'
-import React from 'react'
-import { renderToString } from 'react-dom/server'
 import App from './app'
+import React from 'react'
+import express from 'express'
+import { renderToString } from 'react-dom/server'
 import template from './template'
 
 const server = express()
@@ -10,12 +10,12 @@ const port = 8888
 server.use('/assets', express.static('assets'))
 
 server.get('/', (req, res) => {
-  const appString = renderToString(<App />)
+	const appString = renderToString(<App />)
 
-  res.send(template({
-    body: appString,
-    title: 'Hello World from the server'
-  }))
+	res.send(template({
+		body: appString,
+		title: 'Hello World from the server'
+	}))
 })
 
 server.use((req, res, next) => {
