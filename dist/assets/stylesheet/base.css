@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 14px;
+}
+
+html {
+    line-height: 1.5;
+    font-family: 'Open-Sans', sans-serif;
+    font-weight: normal;
+    color: rgba(0,0,0,0.87);
+}

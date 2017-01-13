@@ -4,14 +4,12 @@ export default ({ body, title }) => {
     <html>
       <head>
         <title>${title}</title>
-        <link rel="stylesheet" href="/assets/index.css" />
+        <link rel="stylesheet" href="assets/stylesheet/base.css">
       </head>
-      
       <body>
         <div id="root">${body}</div>
       </body>
-      
-      <script src="/assets/bundle.js"></script>
+      <script src="assets/bundle.js"></script>
     </html>
   `
 }

@@ -21,6 +21,9 @@ endif
 build:
 	npm run build
 
+watch:
+	npm run watch
+
 build-prod:
 	NODE_ENV='production' npm run build
 
