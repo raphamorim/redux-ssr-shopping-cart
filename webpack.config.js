@@ -2,17 +2,9 @@ const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
 
-const productionEnv = process.env.NODE_ENV === 'production'
+const production = process.env.NODE_ENV === 'production'
 
-let plugins = productionEnv ? [
-  new webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': JSON.stringify('production')
-    }
-  })
-] : []
-
-const clientLoaders = productionEnv ? plugins.concat([
+const loaders = production ? [
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.optimize.UglifyJsPlugin({
@@ -21,53 +13,44 @@ const clientLoaders = productionEnv ? plugins.concat([
     },
     sourceMap: false
   })
-]) : []
+] : []
 
 module.exports = [{
-    entry: './src/server.js',
-    output: {
-      path: './dist',
-      filename: 'server.js',
-      libraryTarget: 'commonjs2',
-      publicPath: '/'
-    },
-    target: 'node',
-    node: {
-      console: false,
-      global: false,
-      process: false,
-      Buffer: false,
-      __filename: false,
-      __dirname: false
-    },
-    externals: nodeExternals(),
-    plugins: plugins,
-    module: {
-      loaders: [{
-        test: /\.js$/,
-        loader: 'babel'
-      }]
-    }
-  }, {
+  entry: './src/index.js',
+  output: {
+    path: './dist',
+    filename: 'server.js',
+    publicPath: '/'
+  },
+  target: 'node',
+  node: {
+    console: true,
+    global: true,
+    process: true,
+    Buffer: true,
+    __filename: true,
+    __dirname: true
+  },
+  externals: nodeExternals(),
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      loader: 'babel'
+    }]
+  }
+}, {
   entry: './src/app/index.js',
   output: {
     path: './dist/assets',
     publicPath: '/',
     filename: 'bundle.js'
   },
-  plugins: clientLoaders.concat([
-    new ExtractTextPlugin('index.css', {
-      allChunks: true
-    })
-  ]),
+  plugins: loaders,
   module: {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel'
-    }, {
-      test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('css!sass')
     }]
   },
   resolve: {

@@ -24,6 +24,9 @@ build:
 watch:
 	npm run watch
 
+deploy: 
+	$(MAKE) build-prod && git push heroku master 
+
 build-prod:
 	NODE_ENV='production' npm run build
 

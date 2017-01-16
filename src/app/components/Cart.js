@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 import Badge from 'material-ui/Badge'
 import IconButton from 'material-ui/IconButton'
 import ShoppingCart from 'material-ui/svg-icons/action/add-shopping-cart'
-
+import Subheader from 'material-ui/Subheader'
 import Avatar from 'material-ui/Avatar'
 import Chip from 'material-ui/Chip'
-
+import TextField from 'material-ui/TextField'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 
@@ -24,7 +24,9 @@ const styles = {
     maxWidth: 'none'
   },
   orderedDevs: {
-    display: 'flex'
+    display: 'flex',
+    flexWrap: 'wrap',
+    width: '100%'
   }
 }
 
@@ -50,51 +52,72 @@ export default class Cart extends Component {
 
 	render() {
     let { devsInCart, removeFromCart } = this.props
+    let totalPrice = 0
+
+    const formatCurrency = (num) => {
+      return `$` + Number(num.toFixed(1)).toLocaleString()
+    }
 
     // TODO: Decorators
     const handleClose = this.handleClose.bind(this)
     const handleOpen = this.handleOpen.bind(this)
 
+    const buttonProps = {
+      primary: true,
+      onTouchTap: handleClose,
+      onClick: handleClose
+    }
+    const modalProps = {
+      modal: true,
+      contentStyle: styles.content,
+      open: this.state.open,
+      title: "My Order"
+    }
+
+    const confirm = [
+      <FlatButton label="Ok, I undestand!" {...buttonProps}/>
+    ]
     const actions = [
-      <FlatButton
-        label="Cancel"
-        primary={true}
-        onTouchTap={handleClose}
-        onClick={handleClose}
-      />,
-      <FlatButton
-        label="Finish Order"
-        primary={true}
-        onTouchTap={handleClose}
-        onClick={handleClose}
-      />,
+      <FlatButton label="Cancel" {...buttonProps}/>,
+      <FlatButton label="Finish Order" {...buttonProps}/>
     ]
 
   	const orderedDevs = devsInCart.map((dev, index) => {
-      const remove = () => removeFromCart(dev)
+      totalPrice += dev.price
   		return (
-        <Chip onRequestDelete={remove} style={styles.chip}>
+        <Chip style={styles.chip}>
           <Avatar src={dev.avatarURL} />
           {dev.login}
         </Chip>
   		)
   	})
     
-  	return (
-      <div style={styles.cart}>
-        <Badge className="cart-badge" onClick={handleOpen} badgeContent={devsInCart.length} primary={true}>
-          <ShoppingCart />
-        </Badge>
-        <Dialog
-          title="My Order"
-          actions={actions}
-          modal={true}
-          contentStyle={styles.content}
-          open={this.state.open}>
+    let dialog = (<Dialog actions={confirm} {...modalProps}>
+      You have not made any order yet
+    </Dialog>)
+
+    if (devsInCart.length)
+      dialog = (
+        <Dialog actions={actions} autoScrollBodyContent={true} {...modalProps}>
+          <Subheader>Developers in Cart:</Subheader>
           <div style={styles.orderedDevs}>
             {orderedDevs}
           </div>
+          <Subheader>Total: {formatCurrency(totalPrice)}</Subheader>
         </Dialog>
+      )
+
+  	return (
+      <div style={styles.cart}>
+        <Badge 
+          className='cart-badge'
+          onClick={handleOpen} 
+          badgeContent={devsInCart.length} 
+          primary={true}
+          style={styles.badge}>
+          <ShoppingCart />
+        </Badge>
+        { dialog }
       </div>
   	)
   }

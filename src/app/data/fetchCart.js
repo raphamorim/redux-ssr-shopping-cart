@@ -1,7 +1,8 @@
 import 'whatwg-fetch'
 
-export function fetchDevelopers(setData) {
-    fetch('/api/developers')
+export function fetchCart(setData, id) {
+	const route = `/api/carts/${cartId}`
+    fetch(route)
         .then(res => res.json())
         .then((responseData) => {
             if(responseData){

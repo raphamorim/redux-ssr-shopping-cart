@@ -1,21 +1,23 @@
 import App from './app/containers/App'
-import api from './api'
+import { json } from 'body-parser'
+import api from './server/routes'
 import cache from 'memory-cache'
 import React from 'react'
 import request from 'request'
 import express from 'express'
 import { renderToString } from 'react-dom/server'
-import template from './template'
-import setNodeEnv from 'node-env-file'
+import template from './server/template'
+import config from './config'
+import mongoose from 'mongoose'
+import graffiti from '@risingstack/graffiti'
+import { schema } from './server/schemas'
 
-setNodeEnv(__dirname + '/../.env');
+mongoose.connect(config.mongo)
 
 const githubToken = process.env.GITHUB_TOKEN
+const port = process.env.PORT || 5000
+
 const server = express()
-const port = 8888
-const time = { 
-	HOUR: 3600000
-}
 
 server.get('/', (req, res) => {
 	const appString = renderToString(<App />)
@@ -25,6 +27,8 @@ server.get('/', (req, res) => {
 		title: 'Developers Shop • jQuery'
 	}))
 })
+
+server.use(json())
 
 server.use((req, res, next) => {
 	return next()
@@ -94,14 +98,14 @@ server.use((req, res, next) => {
 				    }
   				} 
   			}`,
-  			variables: { "organizationLogin": "jquery" }
+  			variables: { 'organizationLogin': 'jquery' }
   		})
 	}
 	request(config, function(err, result, body) {
 		if (!err && result.statusCode === 200) {
 			body = JSON.parse(body)
 			if (body.data && body.data.organization) {
-				cache.put('devs', normalizeData(body.data.organization), time.hour)
+				cache.put('devs', normalizeData(body.data.organization), config.time.hour)
 			}
 		}
 
@@ -110,7 +114,11 @@ server.use((req, res, next) => {
 })
 
 server.use('/assets', express.static('dist/assets'))
-server.use('/api', api);
+
+server.use('/api/developers', api.developers)
+server.use('/api/carts', api.carts)
+
+server.use(graffiti.express({ schema }))
 
 server.listen(port, () => {
 	console.log(`listening on port ${port}`)

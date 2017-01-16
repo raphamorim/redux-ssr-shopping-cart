@@ -10,9 +10,9 @@ const reducers = {
 	cart: cartReducer,
 }
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
+const storeMiddleware = applyMiddleware(thunk)(createStore)
 const reducer = combineReducers(reducers)
-const store = createStoreWithMiddleware(reducer)
+const store = storeMiddleware(reducer)
 
 export default class App extends Component {
 	render() {

@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import DevelopersToBuy from '../components/DevelopersToBuy'
+
+import DevelopersGrid from '../components/DevelopersGrid'
 import Cart from '../components/Cart'
+import Loader from '../components/Loader'
+
 import AppBar from 'material-ui/AppBar'
 import FlatButton from 'material-ui/FlatButton'
+
 import * as CartActions from '../actions/CartActions'
-
-import LinearProgress from 'material-ui/LinearProgress'
-
 const INITIAL_QUERY = 'developers'
 
 class DevsApp extends Component {
@@ -25,23 +26,24 @@ class DevsApp extends Component {
 
 	render() {
 		const { developers, devsInCart, addToCart, removeFromCart, loading } = this.props
-    	const developersToBuy = <DevelopersToBuy developers={developers} devsInCart={devsInCart} addToCart={addToCart} removeFromCart={removeFromCart}/>
-		const loader = <LinearProgress mode="indeterminate"/>
+    	const developersToBuy = <DevelopersGrid developers={developers} devsInCart={devsInCart} addToCart={addToCart} removeFromCart={removeFromCart}/>
+    	const emptyElement = <div></div>
 		
 		let checkoutButton
 
 		if (devsInCart.length)
-			checkoutButton = <FlatButton onClick={this.handleCheckout} label="Proceed to checkout"/>
+			checkoutButton = <FlatButton onClick={this.handleCheckout} label='Proceed to checkout'/>
 
 		return (
 		    <div>
-  				<AppBar title="jQuery Developers Shop" 
-					iconClassNameRight="muidocs-icon-navigation-expand-more" 
+  				<AppBar title='jQuery Developers Shop' 
+  					iconElementLeft={emptyElement}
+					iconClassNameRight='muidocs-icon-navigation-expand-more' 
 					iconElementRight={checkoutButton}/>
 		        <Cart devsInCart={devsInCart}
 	          		addToCart={addToCart}
 	          		removeFromCart={removeFromCart}/>
-		        { (loading) ? loader : developersToBuy }
+		        { (loading) ? <Loader/> : developersToBuy }
 		    </div>
 		)
 	}

@@ -1905,14 +1905,14 @@ const items = [{
 	}
 }]
 
-router.get('/developers', (req, res) => {
+router.get('/', (req, res) => {
 	const cachedDevs = JSON.parse(cache.get('devs'))
 	if (!cachedDevs || !cachedDevs.length) {
 		return res.status(200).json(items)
-			// return res.status(404).json({error: 'developers not found'})
+		// return res.status(404).json({error: 'developers not found'})
 	}
 
 	res.json(cachedDevs)
 })
 
-module.exports = router
+export default router

@@ -1,15 +1,17 @@
 Consideracoes:
 - Progressive Web App
 
-23ab0bb0657e8dc2a464a9caa495831abc9ea2f0
-
 Server:
-- Paginacao
 - GraphQL X
 - Criar simples request e persistir em memória X
 - Camada de Cache X
 
 Client:
-- baseado em flux
+- baseado em redux
 - service work (offline)
 - criar paginas, react-router
+
+
+- Persistencia Mongo
+- PWA
+- Testes

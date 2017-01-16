@@ -1,5 +1,5 @@
-import {ADD_TO_CART, REMOVE_FROM_CART, SET_DEVELOPERS, SET_LOADING} from '../constants/ActionTypes';
-import {fetchDevelopers as fetchDevelopersData} from '../data/fetchData';
+import {ADD_TO_CART, REMOVE_FROM_CART, SET_DEVELOPERS, SET_LOADING} from '../constants/ActionTypes'
+import {fetchDevelopers as fetchDevelopersData} from '../data/fetchData'
 
 export function addToCart(dev) {
   return {
@@ -29,13 +29,20 @@ export function setDevelopers(devs) {
   }
 }
 
-export function fetchDevelopers(query) {
+export function fetchDevelopers() {
   return (dispatch) => {
     dispatch(setLoading(true))
     fetchDevelopersData((developers)=>{
       dispatch(setDevelopers(developers))
-    }, {
-      query
     })
+  }
+}
+
+export function fetchCart(cartId) {
+  return (dispatch) => {
+    dispatch(setLoading(true))
+    fetchDevelopersData((developers)=>{
+      dispatch(setDevelopers(developers))
+    }, cartId)
   }
 }
