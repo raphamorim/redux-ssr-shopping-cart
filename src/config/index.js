@@ -9,13 +9,6 @@ let Config = {}
 Config.env = process.env['NODE_ENV'] || 'development'
 
 /*
- * Set specific time definitions.
- */
-Config.time = {
-	hour: 3600000
-}
-
-/*
  * Environment: Development.
  */
 Config.development = {

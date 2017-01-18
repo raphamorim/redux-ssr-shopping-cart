@@ -31,8 +31,6 @@ server.get('/', (req, res) => {
 server.use(json())
 
 server.use((req, res, next) => {
-	return next()
-
 	// TODO: Reorganize all middleware logic
 
 	if (cache.get('devs'))
@@ -105,9 +103,8 @@ server.use((req, res, next) => {
 	request(requestConfig, function(err, result, body) {
 		if (!err && result.statusCode === 200) {
 			body = JSON.parse(body)
-			if (body.data && body.data.organization) {
-				cache.put('devs', normalizeData(body.data.organization), config.time.hour)
-			}
+			if (body.data && body.data.organization)
+				cache.put('devs', normalizeData(body.data.organization), 3600000)
 		}
 
 		next()

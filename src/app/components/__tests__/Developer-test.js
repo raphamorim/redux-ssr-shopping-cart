@@ -29,7 +29,7 @@ const fixture = {
 }
 const inCart = () => { return false }
 const props = {
-	inCart: inCart,
+	inCart: false,
 	data: fixture.dev
 }
 
@@ -41,5 +41,15 @@ it('should render one <GridTile />', () => {
 it('should render an `.grid-tile`', () => {
 	const developer = shallow(<Developer {...props} />)
 	expect(developer.find('.grid-tile').length).toBe(1)
+})
+
+it('should not render `.inCart`', () => {
+	const developer = shallow(<Developer {...props} />)
+	expect(developer.find('.inCart').length).toBe(0)
+})
+
+it('should render `.inCart` only when dev exists in Cart', () => {
+	const developer = shallow(<Developer inCart={true} data={fixture.dev} />)
+	expect(developer.find('.inCart').length).toBe(1)
 })
 

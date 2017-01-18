@@ -80,7 +80,7 @@ export default class Developer extends Component {
 				onClick={handleClick}
 				style={styles.tile}
 				titlePosition={'top'}
-				key={data.avatarURL}
+				key={data.login}
 				title={data.login}
 				actionPosition="left"
 				titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
@@ -98,5 +98,5 @@ Developer.propTypes = {
 		name: PropTypes.string,
 	}),
 	addToCart: PropTypes.func,
-	inCart: PropTypes.bool,
+	inCart: PropTypes.number,
 }

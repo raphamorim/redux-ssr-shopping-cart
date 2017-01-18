@@ -14,7 +14,7 @@ const styles = {
 	cart: {
 		display: 'flex',
 		justifyContent: 'space-between',
-		padding: '24px 16px'
+		padding: '24px 16px 0px 16px'
 	},
 	chip: {
 		margin: 4,

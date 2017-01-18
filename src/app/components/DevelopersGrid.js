@@ -126,7 +126,7 @@ export default class DevelopersGrid extends Component {
 					</div>
 					<GridList cols={columns} padding={1} cellHeight={250} style={styles.gridList} >
 						{ developers.map((dev, index) =>
-							<Developer inCart={this.isInCart(dev, devsInCart)} data={dev} {...this.props} />
+							<Developer key={index} inCart={this.isInCart(dev, devsInCart)} data={dev} {...this.props} />
 						)}
 					</GridList>
 				</div>

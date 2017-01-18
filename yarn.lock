@@ -229,7 +229,7 @@ babel-code-frame@^6.16.0, babel-code-frame@^6.20.0, babel-code-frame@^6.8.0:
     esutils "^2.0.2"
     js-tokens "^2.0.0"
 
-babel-core@6.10.4:
+babel-core@6.10.4, babel-core@^6.0.0:
   version "6.10.4"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.10.4.tgz#283f2212bb03d4e5cd7498b9886efbf6fc2e238e"
   dependencies:
@@ -255,7 +255,7 @@ babel-core@6.10.4:
     slash "^1.0.0"
     source-map "^0.5.0"
 
-babel-core@^6.0.0, babel-core@^6.18.0:
+babel-core@^6.18.0:
   version "6.21.0"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.21.0.tgz#75525480c21c803f826ef3867d22c19f080a3724"
   dependencies:
@@ -1594,7 +1594,7 @@ fb-watchman@^1.8.0, fb-watchman@^1.9.0:
   dependencies:
     bser "^1.0.2"
 
-fbjs@^0.8.1, fbjs@^0.8.4:
+fbjs@^0.8.1, fbjs@^0.8.4, fbjs@^0.8.6:
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.8.tgz#02f1b6e0ea0d46c24e0b51a2d24df069563a5ad6"
   dependencies:
@@ -3425,6 +3425,12 @@ react-redux@4.0.0:
   dependencies:
     hoist-non-react-statics "^1.0.3"
     invariant "^2.0.0"
+
+react-tap-event-plugin@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-tap-event-plugin/-/react-tap-event-plugin-2.0.1.tgz#316beb3bc6556e29ec869a7293e89c826a9074d2"
+  dependencies:
+    fbjs "^0.8.6"
 
 react@15.4.2:
   version "15.4.2"
