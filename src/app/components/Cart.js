@@ -79,7 +79,7 @@ export default class Cart extends Component {
 		]
 		const actions = [
 			<FlatButton label="Cancel" {...buttonProps}/>,
-			<FlatButton label="Finish Order" {...buttonProps}/>
+			<FlatButton label="Finish Order" {...buttonProps} onClick={() => location.reload()}/>
 		]
 
 		const orderedDevs = devsInCart.map((dev, index) => {

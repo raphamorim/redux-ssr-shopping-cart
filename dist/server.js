@@ -961,7 +961,9 @@
 				};
 
 				var confirm = [_react2.default.createElement(_FlatButton2.default, _extends({ label: 'Ok, I undestand!' }, buttonProps))];
-				var actions = [_react2.default.createElement(_FlatButton2.default, _extends({ label: 'Cancel' }, buttonProps)), _react2.default.createElement(_FlatButton2.default, _extends({ label: 'Finish Order' }, buttonProps))];
+				var actions = [_react2.default.createElement(_FlatButton2.default, _extends({ label: 'Cancel' }, buttonProps)), _react2.default.createElement(_FlatButton2.default, _extends({ label: 'Finish Order' }, buttonProps, { onClick: function onClick() {
+						return location.reload();
+					} }))];
 
 				var orderedDevs = devsInCart.map(function (dev, index) {
 					totalPrice += dev.price;
