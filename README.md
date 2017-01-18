@@ -2,6 +2,18 @@
 
 > A Sample of React + Redux + Server Side Render + GraphQL + Express + MongoDB
 
+## Summary
+
+- [Structure](#structure)
+- [Setup & Run](#setup-run)
+  - [Setup](#setup)
+  - [Build](#build)
+  - [Up Mongo](#up-mongo)
+  - [Running](#running)
+- [Ecosystem](#ecosystem)
+  - [Redux](#redux)
+  - [MongoDB](#mongodb)
+
 ## Structure
 
 ```
@@ -30,7 +42,7 @@
   index.js -- our express server
 ```
 
-## Setup & Build
+## Setup & Run
 
 #### Setup
 
@@ -54,7 +66,7 @@ To enter in developer mode (watching files and build for every change) you can r
 
 Production Note: use `make build-prod` to force `production` environment for bundle process.
 
-## Up Mongo
+#### Up Mongo
 
 You need to have [MongoDB](mongodb.com) installed, then you need to run in a separeted process:
 
@@ -62,9 +74,24 @@ You need to have [MongoDB](mongodb.com) installed, then you need to run in a sep
 $ mongod
 ```
 
-## Running
+#### Running
 
 ```
 $ make run
 ```
 
+## Ecosystem
+
+#### Redux
+
+Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. You can use Redux together with React, or with any other view library.
+
+You can [learn more about Redux here](https://github.com/brillout/awesome-redux).
+
+#### MongoDB
+
+MongoDB is a free and open-source cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with schemas. 
+
+MongoDB supports field, range queries, regular expression searches. Queries can return specific fields of documents and also include user-defined JavaScript functions. Queries can also be configured to return a random sample of results of a given size. Fields in a MongoDB document can be indexed with primary and secondary indices.
+
+You can [learn more about MongoDB here](https://github.com/ramnes/awesome-mongodb).
