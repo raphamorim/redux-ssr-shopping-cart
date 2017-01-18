@@ -18,10 +18,10 @@ export default class App extends Component {
 	render() {
 		return (
 			<MuiThemeProvider>
-	      		<Provider store={store}>
-	        		<Developers/>
-	      		</Provider>
-	      	</MuiThemeProvider>
+				<Provider store={store}>
+				<Developers/>
+				</Provider>
+			</MuiThemeProvider>
 		)
 	}
 }

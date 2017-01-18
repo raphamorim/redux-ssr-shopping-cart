@@ -24,10 +24,6 @@
         "no-implicit-coercion": "error",
         "no-labels": "error",
         "no-loop-func": "error",
-        "no-magic-numbers": [ "error", {
-            "ignoreArrayIndexes": true,
-            "ignore": [0, 1]
-        }],
         "no-multi-spaces": "error",
         "no-native-reassign": "error",
         "no-new-wrappers": "error",
@@ -116,7 +112,6 @@
         }],
         "semi": [ "error", "never" ],
         "semi-spacing": "error",
-        "sort-imports": "error",
         "space-before-blocks": "error",
         "space-before-function-paren": [ "error", "never" ],
         "space-in-parens": [ "error", "never" ],

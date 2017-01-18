@@ -26,25 +26,25 @@ class DevsApp extends Component {
 
 	render() {
 		const { developers, devsInCart, addToCart, removeFromCart, loading } = this.props
-    	const developersToBuy = <DevelopersGrid developers={developers} devsInCart={devsInCart} addToCart={addToCart} removeFromCart={removeFromCart}/>
-    	const emptyElement = <div></div>
-		
+		const developersToBuy = <DevelopersGrid developers={developers} devsInCart={devsInCart} addToCart={addToCart} removeFromCart={removeFromCart}/>
+		const emptyElement = <div></div>
+
 		let checkoutButton
 
 		if (devsInCart.length)
-			checkoutButton = <FlatButton onClick={this.handleCheckout} label='Proceed to checkout'/>
+			checkoutButton = <FlatButton onClick={this.handleCheckout} label="Proceed to checkout"/>
 
 		return (
-		    <div>
-  				<AppBar title='jQuery Developers Shop' 
-  					iconElementLeft={emptyElement}
-					iconClassNameRight='muidocs-icon-navigation-expand-more' 
+			<div>
+				<AppBar title="jQuery Developers Shop"
+					iconElementLeft={emptyElement}
+					iconClassNameRight="muidocs-icon-navigation-expand-more"
 					iconElementRight={checkoutButton}/>
-		        <Cart devsInCart={devsInCart}
-	          		addToCart={addToCart}
-	          		removeFromCart={removeFromCart}/>
-		        { (loading) ? <Loader/> : developersToBuy }
-		    </div>
+				<Cart devsInCart={devsInCart}
+					addToCart={addToCart}
+					removeFromCart={removeFromCart}/>
+				{ (loading) ? <Loader/> : developersToBuy }
+			</div>
 		)
 	}
 }

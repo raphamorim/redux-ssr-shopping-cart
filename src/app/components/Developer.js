@@ -11,28 +11,28 @@ const styles = {
 		cursor: 'pointer'
 	},
 	largeIcon: {
-    	color: 'white'
-  	}
+		color: 'white'
+	}
 }
 
 export default class Developer extends Component {
 	constructor(props) {
-	    super(props)
-	    this.state = {
-	      open: false
-	    }
+		super(props)
+		this.state = {
+			open: false
+		}
 	}
 
 	handleTouchTap() {
-	    this.setState({
-	      open: true
-	    })
+		this.setState({
+			open: true
+		})
 	}
 
 	handleRequestClose() {
-	    this.setState({
-	      open: false
-	    })
+		this.setState({
+			open: false
+		})
 	}
 
 	render() {
@@ -54,7 +54,7 @@ export default class Developer extends Component {
 
 		const message = `${data.login} was added to your cart!`
 		const formatCurrency = (num) => {
-		    return `$` + Number(num.toFixed(1)).toLocaleString()
+			return `$` + Number(num.toFixed(1)).toLocaleString()
 		}
 
 		let icon = <AddIcon style={styles.button}/>
@@ -64,30 +64,30 @@ export default class Developer extends Component {
 		const actionBtn = (
 			<div>
 				<IconButton iconStyle={styles.largeIcon}>
-		      		{ icon }
-		    	</IconButton>
-		    	<Snackbar
-		      		open={this.state.open}
-		          	message={message}
-		          	autoHideDuration={2500}
-		          	onRequestClose={handleClose}/>
-		    </div>
+					{ icon }
+				</IconButton>
+				<Snackbar
+					open={this.state.open}
+					message={message}
+					autoHideDuration={2500}
+					onRequestClose={handleClose}/>
+			</div>
 		)
 
 		return (
 			<GridTile
-				className='grid-tile'
+				className="grid-tile"
 				onClick={handleClick}
 				style={styles.tile}
 				titlePosition={'top'}
-		      	key={data.avatarURL}
-		      	title={data.login}
-		      	actionPosition='left'
-		      	titleBackground='linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)'
-		      	subtitle={formatCurrency(data.price)}
-		      	actionIcon={actionBtn} >
-		      	<img className={(inCart)? 'inCart' : ''} src={data.avatarURL} />
-		    </GridTile>
+				key={data.avatarURL}
+				title={data.login}
+				actionPosition="left"
+				titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+				subtitle={formatCurrency(data.price)}
+				actionIcon={actionBtn} >
+				<img className={(inCart) ? 'inCart' : ''} src={data.avatarURL} />
+			</GridTile>
 		)
 	}
 }

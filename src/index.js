@@ -54,54 +54,55 @@ server.use((req, res, next) => {
 			if (repositories)
 				node['price'] += repositories.totalCount
 
-			return node 
+			return node
 		})
 
 		// Sort by most expensive
-		edges.sort((prev, next) => { 
-      		return next.node.price - prev.node.price
-    	})
+		edges.sort((prev, coming) => {
+			return coming.node.price - prev.node.price
+		})
+
 		return JSON.stringify(edges)
 	}
-	const config = {
+	const requestConfig = {
 		url: 'https://api.github.com/graphql',
 		method: 'POST',
 		headers: {
 			'User-Agent': 'Awesome-Octocat'
-  		},
-  		auth: {
-  			bearer: githubToken
-  		},
-  		body: JSON.stringify({
-  			query: `query($organizationLogin:String!) { 
-  				organization(login: $organizationLogin) { 
-				  	members(last: 100) {
-				      	edges {
-				        	node {
-				        		login,
-				          		name,
-					          	email,
-					          	url,
-					          	avatarURL,
-					          	company,
-				          		followers {
-				            		totalCount
-				          		}
-				          		following {
-				            		totalCount
-				          		}
-				          		repositories {
-				            		totalCount
-				          		}
-				        	}
-				      	}
-				    }
-  				} 
-  			}`,
-  			variables: { 'organizationLogin': 'jquery' }
-  		})
+		},
+		auth: {
+			bearer: githubToken
+		},
+		body: JSON.stringify({
+			query: `query($organizationLogin:String!) {
+				organization(login: $organizationLogin) {
+					members(last: 100) {
+						edges {
+							node {
+								login,
+								name,
+								email,
+								url,
+								avatarURL,
+								company,
+								followers {
+									totalCount
+								}
+								following {
+									totalCount
+								}
+								repositories {
+									totalCount
+								}
+							}
+						}
+					}
+				}
+			}`,
+			variables: { 'organizationLogin': 'jquery' }
+		})
 	}
-	request(config, function(err, result, body) {
+	request(requestConfig, function(err, result, body) {
 		if (!err && result.statusCode === 200) {
 			body = JSON.parse(body)
 			if (body.data && body.data.organization) {
