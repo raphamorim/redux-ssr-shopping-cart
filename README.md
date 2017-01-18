@@ -2,10 +2,14 @@
 
 > A Sample of React + Redux + Server Side Render + GraphQL + Express + MongoDB
 
+[See it running](http://jquery-developers-shop.herokuapp.com/)
+
+![Example Image](example/example.png)
+
 ## Summary
 
 - [Structure](#structure)
-- [Setup & Run](#setup-run)
+- [Setup & Run](#setup--run)
   - [Setup](#setup)
   - [Build](#build)
   - [Up Mongo](#up-mongo)
@@ -95,3 +99,17 @@ MongoDB is a free and open-source cross-platform document-oriented database prog
 MongoDB supports field, range queries, regular expression searches. Queries can return specific fields of documents and also include user-defined JavaScript functions. Queries can also be configured to return a random sample of results of a given size. Fields in a MongoDB document can be indexed with primary and secondary indices.
 
 You can [learn more about MongoDB here](https://github.com/ramnes/awesome-mongodb).
+
+#### GraphQL
+
+GraphQL is a data query language developed internally by Facebook in 2012 before being publicly released in 2015. It provides an alternate to REST and ad-hoc webservice architectures.
+
+You can send a GraphQL query to your API and get exactly what you need, nothing more and nothing less. GraphQL queries always return predictable results. Apps using GraphQL are fast and stable because they control the data they get, not the server.
+
+You can [learn more about GraphQL here](http://graphql.org/).
+
+#### Express
+
+Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+
+You can [learn more about Express here](http://expressjs.com/).
