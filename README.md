@@ -17,6 +17,9 @@
 - [Ecosystem](#ecosystem)
   - [Redux](#redux)
   - [MongoDB](#mongodb)
+  - [GraphQL](#graphql)
+  - [Express](#express)
+
 
 ## Structure
 
